@@ -19,7 +19,7 @@ const port = process.env.PORT || 8000
 const server = http.createServer((req,res)=> {
 
     const { query, pathname } = url.parse(req.url, true)
-    console.log(port);
+    console.log('req.connection.encrypted', req.connection.encrypted);
 
 
     //overview page
