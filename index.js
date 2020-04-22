@@ -19,8 +19,11 @@ const port = process.env.PORT || 8000
 //readFileSync code above gets executed only once
 const server = http.createServer((req,res)=> {
 
+    console.log('process.env variables', process.env)
+
+    //if on Heroku, redirect from HTTP to HTTPS url
     if(process.env.PORT && req.headers['x-forwarded-proto']!='https'){
-        res.writeHead(302, {
+        res.writeHead(301, {
             'Location': 'https://' + req.headers.host + req.url
           });
         res.end();
