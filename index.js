@@ -14,14 +14,19 @@ const dataObj = JSON.parse(data)
 
 const port = process.env.PORT || 8000
 
+
 //create server gets executed everytime there is a request
 //readFileSync code above gets executed only once
 const server = http.createServer((req,res)=> {
 
+    if(process.env.PORT && req.headers['x-forwarded-proto']!='https'){
+        response.writeHead(302, {
+            'Location': 'https://' + req.headers.host + req.url
+          });
+        response.end();
+    }
+
     const { query, pathname } = url.parse(req.url, true)
-    console.log('proto',   req.headers['x-forwarded-proto']);
-
-
     //overview page
     if(pathname === '/' || pathname === '/overview'){
         res.writeHead(200, { 'content-type': 'text/html' })
