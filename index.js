@@ -12,6 +12,8 @@ const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.htm
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`,'utf-8');
 const dataObj = JSON.parse(data)
 
+const port = process.env.PORT || 8000
+
 //create server gets executed everytime there is a request
 //readFileSync code above gets executed only once
 const server = http.createServer((req,res)=> {
@@ -52,6 +54,6 @@ const server = http.createServer((req,res)=> {
     }
 })
 
-server.listen(8000,'127.0.0.1',()=>{
-    console.log('Listening to requests on port 8000')
+server.listen(port,()=>{
+    console.log(`Listening to requests on port $port`)
 })
