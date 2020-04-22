@@ -20,10 +20,10 @@ const port = process.env.PORT || 8000
 const server = http.createServer((req,res)=> {
 
     if(process.env.PORT && req.headers['x-forwarded-proto']!='https'){
-        response.writeHead(302, {
+        res.writeHead(302, {
             'Location': 'https://' + req.headers.host + req.url
           });
-        response.end();
+        res.end();
     }
 
     const { query, pathname } = url.parse(req.url, true)
