@@ -19,7 +19,7 @@ const port = process.env.PORT || 8000
 const server = http.createServer((req,res)=> {
 
     const { query, pathname } = url.parse(req.url, true)
-    console.log('header',   req.headers);
+    console.log('proto',   req.headers.x-forwarded-proto);
 
 
     //overview page
